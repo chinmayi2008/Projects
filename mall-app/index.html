@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mall Navigator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="Mall navigation demo">
+      <section id="homeStage" class="home-stage">
+        <div class="home-content">
+          <p class="eyebrow">Indoor navigation prototype</p>
+          <h1>Mall Navigator</h1>
+          <p class="home-subtitle">Choose a mall to start indoor navigation</p>
+          <div id="mallCards" class="mall-cards"></div>
+        </div>
+      </section>
+
+      <section id="mapStage" class="map-stage is-hidden">
+        <div class="top-panel" aria-live="polite">
+          <div class="step-icon">↱</div>
+          <div>
+            <p id="mallEyebrow" class="eyebrow">Directions</p>
+            <h1 id="nextStep">Choose a destination. If location is skipped, navigation starts at Main Entrance.</h1>
+          </div>
+        </div>
+
+        <div class="map-control-stack" aria-label="Map menu">
+          <button id="homeButton" class="home-button" type="button">Malls</button>
+          <button id="destinationTab" class="destination-tab" type="button">Destination</button>
+          <button id="legendTab" class="legend-tab" type="button">Legend</button>
+          <button id="categoriesTab" class="categories-tab" type="button">Browse</button>
+        </div>
+
+        <div id="searchPanel" class="search-panel is-hidden">
+          <div class="field-stack">
+            <label for="startSelect">Start</label>
+            <select id="startSelect"></select>
+            <label for="destinationSelect">Destination</label>
+            <select id="destinationSelect"></select>
+            <button id="routeButton" type="button">Route</button>
+          </div>
+          <div class="quick-actions" aria-label="Demo tasks">
+            <button type="button" data-task="parking">Nearest parking</button>
+            <button type="button" data-task="bathroom">Nearest bathroom</button>
+            <button type="button" data-task="food">Food court</button>
+            <button type="button" data-task="carrefour">Carrefour</button>
+            <button type="button" data-task="ansari">Al Ansari</button>
+            <button type="button" data-task="prayer">Prayer room</button>
+            <button type="button" data-task="vertical">Elevator</button>
+          </div>
+        </div>
+
+        <div class="map-toolbar" aria-label="Map controls">
+          <button id="locateButton" type="button" title="Use current location">⌖</button>
+          <button id="zoomInButton" type="button" title="Zoom in">+</button>
+          <button id="zoomOutButton" type="button" title="Zoom out">−</button>
+          <button id="resetButton" type="button" title="Reset map">⟲</button>
+        </div>
+
+        <div id="mapViewport" class="map-viewport" tabindex="0" aria-label="Interactive mall map">
+          <div id="mapCanvas" class="map-canvas">
+            <svg id="routeLayer" class="route-layer" viewBox="0 0 1200 720" aria-hidden="true">
+              <g id="floorPlanLayer" class="floor-base"></g>
+              <g id="corridorLayer" class="corridor-layer"></g>
+              <path id="routePathShadow" class="route-shadow" d="" />
+              <path id="routePath" class="route-path" d="" />
+              <circle id="routeStartMarker" class="route-start-marker" cx="-50" cy="-50" r="10" />
+              <circle id="routeEndMarker" class="route-end-marker" cx="-50" cy="-50" r="11" />
+            </svg>
+            <div id="mapTitle" class="map-title">Ground Floor - My City Centre Al Barsha</div>
+            <div id="markersLayer"></div>
+            <div id="routeNodesLayer"></div>
+            <div id="routeEndPin" class="route-end-pin" style="left: -80px; top: -80px">●</div>
+            <div id="destinationBubble" class="destination-bubble" style="left: -80px; top: -80px"></div>
+            <div id="userDot" class="user-dot" style="left: 170px; top: 535px" aria-label="Your location"></div>
+          </div>
+        </div>
+
+        <div id="routeDebug" class="route-debug">No route selected</div>
+        <div id="mapLegend" class="map-legend is-hidden" aria-label="Map legend">
+          <button id="legendClose" class="legend-close" type="button" title="Hide legend">×</button>
+          <span><i class="legend-chip food-chip"></i>Food / Cafe</span>
+          <span><i class="legend-chip fashion-chip"></i>Fashion</span>
+          <span><i class="legend-chip healthcare-chip"></i>Healthcare</span>
+          <span><i class="legend-chip service-chip"></i>Services</span>
+          <span><i class="legend-chip jewellery-chip"></i>Jewellery</span>
+          <span><i class="legend-chip amenity-chip"></i>Amenities</span>
+          <span><i class="legend-chip entrance-chip"></i>Entrance / Parking</span>
+        </div>
+        <section id="categoriesPanel" class="categories-panel is-hidden" aria-label="Store categories">
+          <div>
+            <p class="eyebrow">Browse</p>
+            <h2>Store Categories</h2>
+          </div>
+          <div id="categoryList" class="category-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
